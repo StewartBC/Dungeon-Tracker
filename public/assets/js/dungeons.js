@@ -1,15 +1,13 @@
 $(function() {
-  $(".completed").on("click", function(event) {
+  $("#completed").on("click", function(event) {
+    event.preventDefault();
     var id = $(this).data("id");
-    var newCompleted = {
-      completed: true
-    };
     $.ajax("/api/dungeons/" + id, {
       type: "PUT",
-      data: newCompleted
+      data: id
     }).then(
       function() {
-        console.log("Changed completed to", newCompleted);
+        console.log("Changed completed to", id);
         location.reload();
       }
     );
