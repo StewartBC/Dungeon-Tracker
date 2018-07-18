@@ -1,12 +1,16 @@
 var mysql = require("mysql");
-
-var connection = mysql.createConnection({
+var connection;
+if (process.env.JAWSDB_URL) {
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+}
+else { connection = mysql.createConnection({
   host: "localhost",
   port: "/Applications/MAMP/tmp/mysql/mysql.sock",
   user: "root",
   password: "root",
   database: "dungeon_db"
 });
+{}
 
 connection.connect(function(err) {
   if (err) {
